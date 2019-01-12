@@ -12,16 +12,16 @@ else {
 }
 //v_spd = -1 * key_jump;
 
-if(place_meeting(x + h_spd, y, o_wall)) {
-	while (! place_meeting(x + sign(h_spd), y, o_wall)) {
+if(place_meeting(x + h_spd, y, o_solid)) {
+	while (! place_meeting(x + sign(h_spd), y, o_solid)) {
 		x = x + sign(h_spd);
 	}
 	h_spd = 0;
 }
 x = x + h_spd;
 
-if(place_meeting(x, y + v_spd, o_wall)) {
-	while (! place_meeting(x, y + sign(v_spd), o_wall)) {
+if(place_meeting(x, y + v_spd, o_solid)) {
+	while (! place_meeting(x, y + sign(v_spd), o_solid)) {
 		y = y + sign(v_spd);
 	}
 	v_spd = 0;
@@ -32,3 +32,10 @@ y = y + v_spd;
 if(y == 0) {
 	
 }
+
+// If Dead
+if p_health <= 0
+	{
+	global.p_lives-=1;
+	room_restart();
+	}
